@@ -14,6 +14,8 @@ repositories {
 }
 
 dependencies {
+    implementation("io.vavr:vavr:0.10.3")
+
     testImplementation(platform("org.junit:junit-bom:5.7.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("io.kotest:kotest-assertions-core:4.6.0")
