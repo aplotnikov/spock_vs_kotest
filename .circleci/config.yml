@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:11.0.10
+
+    working_directory: ~/repo
+
+    environment:
+      JVM_OPTS: -Xmx1Gm
+      TERM: dumb
+
+    steps:
+      - checkout
+      - run: gradle clean build
