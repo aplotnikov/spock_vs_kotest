@@ -18,6 +18,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("io.kotest:kotest-assertions-core:4.6.0")
     testImplementation("io.mockk:mockk:1.12.0")
+    testImplementation("org.spockframework:spock-core:2.0-groovy-3.0")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
