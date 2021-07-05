@@ -21,7 +21,9 @@ import java.util.stream.Stream
 
 class LoanServiceTest {
 
-    private val repository = mock<LoanRepository>()
+    private val repository = mock<LoanRepository> {
+        whenever(it.count()).thenReturn(1)
+    }
 
     private val service = LoanService(repository)
 

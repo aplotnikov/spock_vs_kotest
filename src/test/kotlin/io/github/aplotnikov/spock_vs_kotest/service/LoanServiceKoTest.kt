@@ -23,7 +23,9 @@ class LoanServiceKoTest : ShouldSpec() {
 
     override fun isolationMode() = IsolationMode.InstancePerTest
 
-    private val repository = mockk<LoanRepository>()
+    private val repository = mockk<LoanRepository> {
+        every { count() } returns 1
+    }
 
     private val service = LoanService(repository)
 
