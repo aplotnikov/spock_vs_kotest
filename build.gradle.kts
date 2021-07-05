@@ -27,6 +27,7 @@ dependencies {
     testImplementation("io.mockk:mockk:1.12.0")
     testImplementation("org.apache.commons:commons-lang3:3.12.0")
     testImplementation("org.awaitility:awaitility:4.1.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
 
     testImplementation("org.spockframework:spock-core:2.0-groovy-3.0")
 }
