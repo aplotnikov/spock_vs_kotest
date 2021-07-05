@@ -77,7 +77,7 @@ class ClientSpec extends Specification {
             client.takeLoan(TEN)
         then:
             IllegalStateException exception = thrown()
-            exception.message == 'In order to take a lona client should have status identified. Current status is UNKNOWN'
+            exception.message == 'In order to take a loan client should have status identified. Current status is UNKNOWN'
     }
 
     void 'client should have status registered when registration is completed'() {
@@ -92,7 +92,7 @@ class ClientSpec extends Specification {
             client.takeLoan(TEN)
         then:
             IllegalStateException exception = thrown()
-            exception.message == 'In order to take a lona client should have status identified. Current status is REGISTERED'
+            exception.message == 'In order to take a loan client should have status identified. Current status is REGISTERED'
     }
 
     void 'client should have status identified when identification is completed'() {

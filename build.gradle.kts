@@ -13,13 +13,19 @@ repositories {
     mavenCentral()
 }
 
+val kotlintestVersion = "4.6.0"
+
 dependencies {
     implementation("io.vavr:vavr:0.10.3")
 
     testImplementation(platform("org.junit:junit-bom:5.7.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    testImplementation("io.kotest:kotest-assertions-core:4.6.0")
+
+    testImplementation("io.kotest:kotest-framework-api:$kotlintestVersion")
+    testImplementation("io.kotest:kotest-runner-junit5:$kotlintestVersion")
+    testImplementation("io.kotest:kotest-assertions-core:$kotlintestVersion")
     testImplementation("io.mockk:mockk:1.12.0")
+
     testImplementation("org.spockframework:spock-core:2.0-groovy-3.0")
 }
 

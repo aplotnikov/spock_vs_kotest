@@ -11,26 +11,36 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.TestMethodOrder
 import java.math.BigDecimal.ONE
 import java.math.BigDecimal.TEN
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 class ClientTest {
 
     private val clientFirstName = "Andrii"
 
     private val clientSecondName = "Plotnikov"
 
-    private var client = Client(clientFirstName, clientSecondName, listOf("test@gmail.com", "test2@gmail.com"))
+    private val client = Client(clientFirstName, clientSecondName, listOf("test@gmail.com", "test2@gmail.com"))
 
-    @BeforeAll
-    fun setUpClass() {
-        println("Main class is prepared")
-    }
+    companion object {
+        @BeforeAll
+        @JvmStatic
+        fun setUpClass() {
+            println("Main class is prepared")
+        }
 
-    @AfterAll
-    fun tearDownClass() {
-        println("Main class is cleaned")
+        @AfterAll
+        @JvmStatic
+        fun tearDownClass() {
+            println("Main class is cleaned")
+        }
     }
 
     @BeforeEach
@@ -43,6 +53,7 @@ class ClientTest {
         println("Test into ${javaClass.simpleName} class is cleaned")
     }
 
+    @Order(0)
     @Test
     fun `client should have correct first name and second name`() {
         client.asClue {
@@ -51,6 +62,7 @@ class ClientTest {
         }
     }
 
+    @Order(1)
     @Test
     fun `client should have correct first name and second name - verify all`() {
         assertSoftly(client) {
@@ -59,22 +71,26 @@ class ClientTest {
         }
     }
 
+    @Order(2)
     @Disabled
     @Test
     fun `test should be ignored`() {
         throw IllegalStateException("This test should be not launched")
     }
 
+    @Order(3)
     @Test
     fun `client should have correct e-mail addresses`() {
         client.emails shouldContainExactly listOf("test@gmail.com", "test2@gmail.com")
     }
 
+    @Order(4)
     @Test
     fun `client should have status unknown`() {
         client.isUnknown shouldBe true
     }
 
+    @Order(5)
     @Test
     fun `client should be not able to take a loan when he has unknown status`() {
         // when
@@ -82,9 +98,10 @@ class ClientTest {
             client.takeLoan(TEN)
         }
         // then
-        exception.message shouldBe "In order to take a lona client should have status identified. Current status is UNKNOWN"
+        exception.message shouldBe "In order to take a loan client should have status identified. Current status is UNKNOWN"
     }
 
+    @Order(6)
     @Test
     fun `client should have status registered when registration is completed`() {
         // when
@@ -93,6 +110,27 @@ class ClientTest {
         client.isRegistered shouldBe true
     }
 
+    @Order(7)
+    @Test
+    fun `client should be not able to take a loan when he has registered status`() {
+        // when
+        val exception = shouldThrow<IllegalStateException> {
+            client.takeLoan(TEN)
+        }
+        // then
+        exception.message shouldBe "In order to take a loan client should have status identified. Current status is REGISTERED"
+    }
+
+    @Order(8)
+    @Test
+    fun `client should have status identified when identification is completed`() {
+        // when
+        client.identify()
+        // then
+        client.isIdentified shouldBe true
+    }
+
+    @Order(9)
     @Test
     fun `client should not have enough money to take a loan`() {
         // when
@@ -103,6 +141,7 @@ class ClientTest {
         exception.message shouldBe "Client does not have enough money"
     }
 
+    @Order(10)
     @Test
     fun `client should have enough money to take a loan`() {
         shouldNotThrow<IllegalStateException> {

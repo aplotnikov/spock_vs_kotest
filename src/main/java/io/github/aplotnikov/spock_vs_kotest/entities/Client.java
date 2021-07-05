@@ -61,7 +61,7 @@ public class Client {
     public void takeLoan(BigDecimal amount) {
         if (!isIdentified()) {
             throw new IllegalStateException(
-                    format("In order to take a lona client should have status identified. Current status is %s", status)
+                    format("In order to take a loan client should have status identified. Current status is %s", status)
             );
         }
 
