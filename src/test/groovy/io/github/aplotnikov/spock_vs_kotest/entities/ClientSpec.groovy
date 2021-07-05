@@ -116,4 +116,5 @@ class ClientSpec extends Specification {
         then:
             noExceptionThrown()
     }
+
 }

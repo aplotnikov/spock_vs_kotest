@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.5.10"
-    id("groovy")
+    groovy
+    codenarc
     id("io.gitlab.arturbosch.detekt") version "1.17.1"
     id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
 }
@@ -41,4 +42,9 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.withType<CodeNarc> {
+    version = "2.1.0"
+    configFile = rootProject.file("config/codenarc/codenarc.groovy")
 }

@@ -1,6 +1,5 @@
 package io.github.aplotnikov.spock_vs_kotest.entities
 
-
 import spock.lang.IgnoreIf
 import spock.lang.Requires
 import spock.lang.See
@@ -78,4 +77,5 @@ class ClientWithTestConditionsSpec extends Specification {
                 secondName == clientSecondName
             }
     }
+
 }

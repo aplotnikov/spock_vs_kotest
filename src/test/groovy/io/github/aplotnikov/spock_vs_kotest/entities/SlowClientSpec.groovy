@@ -51,7 +51,7 @@ class SlowClientSpec extends Specification {
     }
 
     private void startPaymentOfIdentificationFee() {
-        startPaymentOfIdentificationFee {}
+        startPaymentOfIdentificationFee { }
     }
 
     private void startPaymentOfIdentificationFee(Closure<?> callback) {
@@ -63,4 +63,5 @@ class SlowClientSpec extends Specification {
             executorService.shutdown()
         }
     }
+
 }
