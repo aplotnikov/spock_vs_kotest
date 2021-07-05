@@ -1,6 +1,6 @@
 package io.github.aplotnikov.spock_vs_kotest.entities
 
-import io.kotest.matchers.shouldBe
+import io.kotest.matchers.booleans.shouldBeTrue
 import org.awaitility.Awaitility.await
 import org.awaitility.Durations.TWO_SECONDS
 import org.junit.jupiter.api.Test
@@ -39,7 +39,7 @@ class SlowClientTest {
         assertTimeout(ofSeconds(2)) {
             client.payIdentificationFee()
         }
-        client.isIdentified shouldBe true
+        client.isIdentified.shouldBeTrue()
     }
 
     @Test
@@ -47,7 +47,7 @@ class SlowClientTest {
         assertTimeoutPreemptively(ofSeconds(2)) {
             client.payIdentificationFee()
         }
-        client.isIdentified shouldBe true
+        client.isIdentified.shouldBeTrue()
     }
 
     @Test
@@ -60,7 +60,7 @@ class SlowClientTest {
             }
             result.get(2, SECONDS)
 
-            client.isIdentified shouldBe true
+            client.isIdentified.shouldBeTrue()
         } finally {
             executorService.shutdown()
         }
@@ -70,7 +70,7 @@ class SlowClientTest {
     fun `should pay identification fee in max 2 seconds - awaitility`() {
         startPaymentOfIdentificationFee {
             await().atMost(TWO_SECONDS).untilAsserted {
-                client.isIdentified shouldBe true
+                client.isIdentified.shouldBeTrue()
             }
         }
     }

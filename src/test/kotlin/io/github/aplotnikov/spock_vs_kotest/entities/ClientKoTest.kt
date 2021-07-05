@@ -9,8 +9,10 @@ import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestCaseOrder
 import io.kotest.core.test.TestResult
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.throwable.shouldHaveMessage
 import java.math.BigDecimal.ONE
 import java.math.BigDecimal.TEN
 
@@ -68,7 +70,7 @@ class ClientKoTest : ShouldSpec() {
         }
 
         should("client has status unknown") {
-            client.isUnknown shouldBe true
+            client.isUnknown.shouldBeTrue()
         }
 
         should("client be not able to take a loan when he has unknown status") {
@@ -77,14 +79,14 @@ class ClientKoTest : ShouldSpec() {
                 client.takeLoan(TEN)
             }
             // then
-            exception.message shouldBe "In order to take a loan client should have status identified. Current status is UNKNOWN"
+            exception.shouldHaveMessage("In order to take a loan client should have status identified. Current status is UNKNOWN")
         }
 
         should("client has status registered when registration is completed") {
             // when
             client.register()
             // then
-            client.isRegistered shouldBe true
+            client.isRegistered.shouldBeTrue()
         }
 
         should("client be not able to take a loan when he has registered status") {
@@ -93,14 +95,14 @@ class ClientKoTest : ShouldSpec() {
                 client.takeLoan(TEN)
             }
             // then
-            exception.message shouldBe "In order to take a loan client should have status identified. Current status is REGISTERED"
+            exception.shouldHaveMessage("In order to take a loan client should have status identified. Current status is REGISTERED")
         }
 
         should("client has status identified when identification is completed") {
             // when
             client.identify()
             // then
-            client.isIdentified shouldBe true
+            client.isIdentified.shouldBeTrue()
         }
 
         should("client don't have enough money to take a loan") {
@@ -109,7 +111,7 @@ class ClientKoTest : ShouldSpec() {
                 client.takeLoan(TEN)
             }
             // then
-            exception.message shouldBe "Client does not have enough money"
+            exception.shouldHaveMessage("Client does not have enough money")
         }
 
         should("client has enough money to take a loan") {

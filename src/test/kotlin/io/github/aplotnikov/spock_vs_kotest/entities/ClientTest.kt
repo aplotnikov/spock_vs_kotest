@@ -4,8 +4,10 @@ import io.kotest.assertions.asClue
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.throwable.shouldHaveMessage
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeAll
@@ -87,7 +89,7 @@ class ClientTest {
     @Order(4)
     @Test
     fun `client should have status unknown`() {
-        client.isUnknown shouldBe true
+        client.isUnknown.shouldBeTrue()
     }
 
     @Order(5)
@@ -98,7 +100,7 @@ class ClientTest {
             client.takeLoan(TEN)
         }
         // then
-        exception.message shouldBe "In order to take a loan client should have status identified. Current status is UNKNOWN"
+        exception.shouldHaveMessage("In order to take a loan client should have status identified. Current status is UNKNOWN")
     }
 
     @Order(6)
@@ -107,7 +109,7 @@ class ClientTest {
         // when
         client.register()
         // then
-        client.isRegistered shouldBe true
+        client.isRegistered.shouldBeTrue()
     }
 
     @Order(7)
@@ -118,7 +120,7 @@ class ClientTest {
             client.takeLoan(TEN)
         }
         // then
-        exception.message shouldBe "In order to take a loan client should have status identified. Current status is REGISTERED"
+        exception.shouldHaveMessage("In order to take a loan client should have status identified. Current status is REGISTERED")
     }
 
     @Order(8)
@@ -127,7 +129,7 @@ class ClientTest {
         // when
         client.identify()
         // then
-        client.isIdentified shouldBe true
+        client.isIdentified.shouldBeTrue()
     }
 
     @Order(9)
@@ -138,7 +140,7 @@ class ClientTest {
             client.takeLoan(TEN)
         }
         // then
-        exception.message shouldBe "Client does not have enough money"
+        exception.shouldHaveMessage("Client does not have enough money")
     }
 
     @Order(10)

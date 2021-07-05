@@ -4,7 +4,7 @@ import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.framework.concurrency.eventually
-import io.kotest.matchers.shouldBe
+import io.kotest.matchers.booleans.shouldBeTrue
 import java.math.BigDecimal.TEN
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors.newSingleThreadScheduledExecutor
@@ -31,7 +31,7 @@ class SlowClientKoTest : ShouldSpec() {
         should("client pay identification fee in max 2 second with async conditions") {
             startPaymentOfIdentificationFee()
             eventually(seconds(2)) {
-                client.isIdentified shouldBe true
+                client.isIdentified.shouldBeTrue()
             }
         }
     }
