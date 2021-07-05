@@ -12,4 +12,16 @@ jobs:
 
     steps:
       - checkout
+
       - run: gradle clean build
+
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/test/
+            find . -type f -regex ".*/build/test-results/test/.*xml" -exec cp {} ~/test-results/test/ \;
+          when: always
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/test
