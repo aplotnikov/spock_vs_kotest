@@ -26,6 +26,7 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core:$kotlintestVersion")
     testImplementation("io.mockk:mockk:1.12.0")
     testImplementation("org.apache.commons:commons-lang3:3.12.0")
+    testImplementation("org.awaitility:awaitility:4.1.0")
 
     testImplementation("org.spockframework:spock-core:2.0-groovy-3.0")
 }

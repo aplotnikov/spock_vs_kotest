@@ -16,7 +16,7 @@ import java.math.BigDecimal.TEN
 
 class ClientKoTest : ShouldSpec() {
 
-    override fun testCaseOrder(): TestCaseOrder? = TestCaseOrder.Sequential
+    override fun testCaseOrder() = TestCaseOrder.Sequential
 
     private val clientFirstName = "Andrii"
 
