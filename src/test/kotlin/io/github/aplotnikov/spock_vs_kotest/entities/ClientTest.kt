@@ -59,7 +59,7 @@ class ClientTest {
     @Test
     fun `client should have correct first name and second name`() {
         client.asClue {
-            it.firstName shouldBe clientFirstName + "1"
+            it.firstName shouldBe clientFirstName
             it.secondName shouldBe clientSecondName
         }
     }
