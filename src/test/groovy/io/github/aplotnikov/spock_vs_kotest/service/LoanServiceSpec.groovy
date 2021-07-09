@@ -14,7 +14,9 @@ import spock.lang.Unroll
 @Unroll
 class LoanServiceSpec extends Specification {
 
-    LoanRepository repository = Mock()
+    LoanRepository repository = Mock {
+        count() >> 1
+    }
 
     @Subject
     LoanService service = new LoanService(repository)
