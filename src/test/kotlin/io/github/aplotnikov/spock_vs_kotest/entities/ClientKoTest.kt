@@ -24,7 +24,7 @@ class ClientKoTest : ShouldSpec() {
 
     private val clientSecondName = "Plotnikov"
 
-    private var client = Client(clientFirstName, clientSecondName, listOf("test@gmail.com", "test2@gmail.com"))
+    private val client = Client(clientFirstName, clientSecondName, listOf("test@gmail.com", "test2@gmail.com"))
 
     override fun beforeSpec(spec: Spec) {
         super.beforeSpec(spec)
