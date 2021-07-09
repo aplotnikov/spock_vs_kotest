@@ -68,30 +68,27 @@ class SlowClientTest {
 
     @Test
     fun `should pay identification fee in max 2 seconds - awaitility`() {
-        startPaymentOfIdentificationFee {
-            await().atMost(TWO_SECONDS).untilAsserted {
-                client.isIdentified.shouldBeTrue()
-            }
+        startPaymentOfIdentificationFee()
+        await().atMost(TWO_SECONDS).untilAsserted {
+            client.isIdentified.shouldBeTrue()
         }
     }
 
     @Test
     fun `should pay identification fee in max 2 seconds - awaitility 2`() {
-        startPaymentOfIdentificationFee {
-            await().atMost(TWO_SECONDS).until {
-                client.isIdentified
-            }
+        startPaymentOfIdentificationFee()
+        await().atMost(TWO_SECONDS).until {
+            client.isIdentified
         }
     }
 
-    private fun startPaymentOfIdentificationFee(operation: Runnable) {
+    private fun startPaymentOfIdentificationFee() {
         val executorService: ExecutorService = newSingleThreadScheduledExecutor()
         try {
             executorService.run {
                 submit {
                     client.payIdentificationFee()
                 }
-                submit(operation)
             }
         } finally {
             executorService.shutdown()
