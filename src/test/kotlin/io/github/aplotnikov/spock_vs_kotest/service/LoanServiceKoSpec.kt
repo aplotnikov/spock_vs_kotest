@@ -19,7 +19,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 
-class LoanServiceKoTest : ShouldSpec() {
+class LoanServiceKoSpec : ShouldSpec() {
 
     override fun isolationMode() = IsolationMode.InstancePerTest
 

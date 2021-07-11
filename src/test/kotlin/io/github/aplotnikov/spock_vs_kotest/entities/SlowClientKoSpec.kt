@@ -13,7 +13,7 @@ import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
 @ExperimentalKotest
-class SlowClientKoTest : ShouldSpec() {
+class SlowClientKoSpec : ShouldSpec() {
 
     override fun isolationMode() = IsolationMode.InstancePerTest
 

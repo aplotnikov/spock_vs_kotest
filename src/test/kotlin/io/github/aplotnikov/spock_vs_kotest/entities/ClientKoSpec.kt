@@ -16,7 +16,7 @@ import io.kotest.matchers.throwable.shouldHaveMessage
 import java.math.BigDecimal.ONE
 import java.math.BigDecimal.TEN
 
-class ClientKoTest : ShouldSpec() {
+class ClientKoSpec : ShouldSpec() {
 
     override fun testCaseOrder() = TestCaseOrder.Sequential
 

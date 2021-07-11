@@ -7,7 +7,7 @@ import org.apache.commons.lang3.SystemUtils.IS_OS_LINUX
 import org.apache.commons.lang3.SystemUtils.IS_OS_MAC
 import org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS
 
-class ClientWithTestConditionsKoTest : ShouldSpec() {
+class ClientWithTestConditionsKoSpec : ShouldSpec() {
 
     private val clientFirstName = "Andrii"
 
