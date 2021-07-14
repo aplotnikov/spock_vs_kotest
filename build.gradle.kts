@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.5.10"
+    kotlin("jvm") version "1.5.21"
     groovy
     codenarc
     id("io.gitlab.arturbosch.detekt") version "1.17.1"
