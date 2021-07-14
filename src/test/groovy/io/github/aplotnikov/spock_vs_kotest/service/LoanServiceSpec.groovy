@@ -9,9 +9,7 @@ import io.github.aplotnikov.spock_vs_kotest.repository.LoanRepository
 import io.vavr.control.Validation
 import spock.lang.Specification
 import spock.lang.Subject
-import spock.lang.Unroll
 
-@Unroll
 class LoanServiceSpec extends Specification {
 
     LoanRepository repository = Mock {
