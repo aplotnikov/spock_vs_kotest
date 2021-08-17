@@ -14,7 +14,7 @@ repositories {
     mavenCentral()
 }
 
-val kotlintestVersion = "4.6.1"
+val kotestVersion = "4.6.1"
 
 dependencies {
     implementation("io.vavr:vavr:0.10.4")
@@ -23,9 +23,9 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.assertj:assertj-core:3.20.2")
 
-    testImplementation("io.kotest:kotest-framework-api:$kotlintestVersion")
-    testImplementation("io.kotest:kotest-runner-junit5:$kotlintestVersion")
-    testImplementation("io.kotest:kotest-assertions-core:$kotlintestVersion")
+    testImplementation("io.kotest:kotest-framework-api:$kotestVersion")
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
     testImplementation("io.mockk:mockk:1.12.0")
     testImplementation("org.apache.commons:commons-lang3:3.12.0")
     testImplementation("org.awaitility:awaitility:4.1.0")
