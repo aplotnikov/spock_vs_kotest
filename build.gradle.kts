@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm") version "1.5.21"
     groovy
     codenarc
-    id("io.gitlab.arturbosch.detekt") version "1.17.1"
+    id("io.gitlab.arturbosch.detekt") version "1.18.0"
     id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
 }
 
@@ -14,10 +14,10 @@ repositories {
     mavenCentral()
 }
 
-val kotlintestVersion = "4.6.0"
+val kotlintestVersion = "4.6.1"
 
 dependencies {
-    implementation("io.vavr:vavr:0.10.3")
+    implementation("io.vavr:vavr:0.10.4")
 
     testImplementation(platform("org.junit:junit-bom:5.7.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
