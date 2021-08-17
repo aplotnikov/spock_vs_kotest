@@ -1,13 +1,9 @@
 package io.github.aplotnikov.spock_vs_kotest.entities
 
-import io.kotest.assertions.asClue
-import io.kotest.assertions.assertSoftly
-import io.kotest.assertions.throwables.shouldNotThrow
-import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.matchers.booleans.shouldBeTrue
-import io.kotest.matchers.collections.shouldContainExactly
-import io.kotest.matchers.shouldBe
-import io.kotest.matchers.throwable.shouldHaveMessage
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatCode
+import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.assertj.core.api.SoftAssertions
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeAll
@@ -58,19 +54,21 @@ class ClientTest {
     @Order(0)
     @Test
     fun `client should have correct first name and second name`() {
-        client.asClue {
-            it.firstName shouldBe clientFirstName
-            it.secondName shouldBe clientSecondName
+        client.run {
+            assertThat(firstName).isEqualTo(clientFirstName)
+            assertThat(secondName).isEqualTo(clientSecondName)
         }
     }
 
     @Order(1)
     @Test
     fun `client should have correct first name and second name - verify all`() {
-        assertSoftly(client) {
-            firstName shouldBe clientFirstName
-            secondName shouldBe clientSecondName
-        }
+        SoftAssertions().also {
+            client.run {
+                it.assertThat(firstName).isEqualTo(clientFirstName)
+                it.assertThat(secondName).isEqualTo(clientSecondName)
+            }
+        }.assertAll()
     }
 
     @Order(2)
@@ -83,24 +81,23 @@ class ClientTest {
     @Order(3)
     @Test
     fun `client should have correct e-mail addresses`() {
-        client.emails shouldContainExactly listOf("test@gmail.com", "test2@gmail.com")
+        assertThat(client.emails).containsExactlyElementsOf(listOf("test@gmail.com", "test2@gmail.com"))
     }
 
     @Order(4)
     @Test
     fun `client should have status unknown`() {
-        client.isUnknown.shouldBeTrue()
+        assertThat(client.isUnknown).isTrue
     }
 
     @Order(5)
     @Test
     fun `client should be not able to take a loan when he has unknown status`() {
-        // when
-        val exception = shouldThrow<IllegalStateException> {
+        assertThatThrownBy {
             client.takeLoan(TEN)
-        }
-        // then
-        exception.shouldHaveMessage("In order to take a loan client should have status identified. Current status is UNKNOWN")
+        }.hasMessage(
+            "In order to take a loan client should have status identified. Current status is UNKNOWN"
+        )
     }
 
     @Order(6)
@@ -109,18 +106,17 @@ class ClientTest {
         // when
         client.register()
         // then
-        client.isRegistered.shouldBeTrue()
+        assertThat(client.isRegistered).isTrue
     }
 
     @Order(7)
     @Test
     fun `client should be not able to take a loan when he has registered status`() {
-        // when
-        val exception = shouldThrow<IllegalStateException> {
+        assertThatThrownBy {
             client.takeLoan(TEN)
-        }
-        // then
-        exception.shouldHaveMessage("In order to take a loan client should have status identified. Current status is REGISTERED")
+        }.hasMessage(
+            "In order to take a loan client should have status identified. Current status is REGISTERED"
+        )
     }
 
     @Order(8)
@@ -129,25 +125,24 @@ class ClientTest {
         // when
         client.identify()
         // then
-        client.isIdentified.shouldBeTrue()
+        assertThat(client.isIdentified).isTrue
     }
 
     @Order(9)
     @Test
     fun `client should not have enough money to take a loan`() {
-        // when
-        val exception = shouldThrow<IllegalStateException> {
+        assertThatThrownBy {
             client.takeLoan(TEN)
-        }
-        // then
-        exception.shouldHaveMessage("Client does not have enough money")
+        }.hasMessage(
+            "Client does not have enough money"
+        )
     }
 
     @Order(10)
     @Test
     fun `client should have enough money to take a loan`() {
-        shouldNotThrow<IllegalStateException> {
+        assertThatCode {
             client.takeLoan(ONE)
-        }
+        }.doesNotThrowAnyException()
     }
 }

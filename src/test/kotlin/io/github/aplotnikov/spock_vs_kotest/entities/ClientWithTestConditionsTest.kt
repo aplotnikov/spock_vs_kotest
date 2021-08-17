@@ -1,10 +1,9 @@
 package io.github.aplotnikov.spock_vs_kotest.entities
 
-import io.kotest.assertions.asClue
-import io.kotest.matchers.shouldBe
 import org.apache.commons.lang3.SystemUtils.IS_OS_LINUX
 import org.apache.commons.lang3.SystemUtils.IS_OS_MAC
 import org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assumptions.assumeTrue
 import org.junit.jupiter.api.Assumptions.assumingThat
 import org.junit.jupiter.api.Test
@@ -22,9 +21,9 @@ class ClientWithTestConditionsTest {
         assumeTrue(IS_OS_WINDOWS) {
             "Aborting test: test wasn't launched on Windows"
         }
-        client.asClue {
-            it.firstName shouldBe clientFirstName
-            it.secondName shouldBe clientSecondName
+        client.run {
+            assertThat(firstName).isEqualTo(clientFirstName)
+            assertThat(secondName).isEqualTo(clientSecondName)
         }
     }
 
@@ -33,9 +32,9 @@ class ClientWithTestConditionsTest {
         assumeTrue(IS_OS_MAC) {
             "Aborting test: test wasn't launched on Mac OS"
         }
-        client.asClue {
-            it.firstName shouldBe clientFirstName
-            it.secondName shouldBe clientSecondName
+        client.run {
+            assertThat(firstName).isEqualTo(clientFirstName)
+            assertThat(secondName).isEqualTo(clientSecondName)
         }
     }
 
@@ -44,9 +43,9 @@ class ClientWithTestConditionsTest {
         assumeTrue(IS_OS_LINUX) {
             "Aborting test: test wasn't launched on Linux"
         }
-        client.asClue {
-            it.firstName shouldBe clientFirstName
-            it.secondName shouldBe clientSecondName
+        client.run {
+            assertThat(firstName).isEqualTo(clientFirstName)
+            assertThat(secondName).isEqualTo(clientSecondName)
         }
     }
 
@@ -54,29 +53,29 @@ class ClientWithTestConditionsTest {
     fun `should be skipped when OS isn't Windows - assumingThat method`() {
         assumingThat(IS_OS_WINDOWS) {
             println("Inner assertion is called")
-            client.firstName shouldBe clientFirstName
+            assertThat(client.firstName).isEqualTo(clientFirstName)
         }
         println("Main assertion is called")
-        client.secondName shouldBe clientSecondName
+        assertThat(client.secondName).isEqualTo(clientSecondName)
     }
 
     @Test
     fun `should be skipped when OS isn't Mac OS - assumingThat method`() {
         assumingThat(IS_OS_MAC) {
             println("Inner assertion is called")
-            client.firstName shouldBe clientFirstName
+            assertThat(client.firstName).isEqualTo(clientFirstName)
         }
         println("Main assertion is called")
-        client.secondName shouldBe clientSecondName
+        assertThat(client.secondName).isEqualTo(clientSecondName)
     }
 
     @Test
     fun `should be skipped when OS isn't Linux - assumingThat method`() {
         assumingThat(IS_OS_LINUX) {
             println("Inner assertion is called")
-            client.firstName shouldBe clientFirstName
+            assertThat(client.firstName).isEqualTo(clientFirstName)
         }
         println("Main assertion is called")
-        client.secondName shouldBe clientSecondName
+        assertThat(client.secondName).isEqualTo(clientSecondName)
     }
 }

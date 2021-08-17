@@ -5,10 +5,7 @@ import io.github.aplotnikov.spock_vs_kotest.entities.Term
 import io.github.aplotnikov.spock_vs_kotest.entities.Term.days
 import io.github.aplotnikov.spock_vs_kotest.entities.Term.years
 import io.github.aplotnikov.spock_vs_kotest.repository.LoanRepository
-import io.kotest.assertions.asClue
-import io.kotest.matchers.booleans.shouldBeTrue
-import io.kotest.matchers.comparables.shouldBeEqualComparingTo
-import io.kotest.matchers.shouldBe
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -43,9 +40,9 @@ class LoanServiceTest {
         // when
         val result = service.create(application)
         // then
-        result.asClue {
-            it.isInvalid.shouldBeTrue()
-            it.error shouldBe violation
+        result.run {
+            assertThat(isInvalid).isTrue
+            assertThat(error).isEqualTo(violation)
         }
     }
 
@@ -58,11 +55,11 @@ class LoanServiceTest {
         // when
         val result = service.create(application)
         // then
-        result.isValid.shouldBeTrue()
+        assertThat(result.isValid).isTrue
         // and
-        result.get().asClue {
-            it.amount shouldBeEqualComparingTo application.amount
-            it.term shouldBe application.term
+        result.get().run {
+            assertThat(amount).isEqualByComparingTo(application.amount)
+            assertThat(term).isEqualTo(application.term)
         }
         // and
         verify(repository).save(any())
