@@ -11,7 +11,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
 import java.math.BigDecimal.TEN
 
-class ClientContextKoTest : ShouldSpec() {
+class ClientContextKoSpec : ShouldSpec() {
     private val clientFirstName = "Andrii"
 
     private val clientSecondName = "Plotnikov"
@@ -19,8 +19,8 @@ class ClientContextKoTest : ShouldSpec() {
     private val client = Client(clientFirstName, clientSecondName, listOf("test@gmail.com", "test2@gmail.com"))
 
     override fun beforeSpec(spec: Spec) {
-        super.beforeSpec(spec)
         println("Main class is prepared")
+        super.beforeSpec(spec)
     }
 
     override fun afterSpec(spec: Spec) {
