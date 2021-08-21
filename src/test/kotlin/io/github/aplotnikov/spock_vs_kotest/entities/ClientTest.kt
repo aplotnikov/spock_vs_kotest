@@ -93,11 +93,11 @@ class ClientTest {
     @Order(5)
     @Test
     fun `client should be not able to take a loan when he has unknown status`() {
-        assertThatThrownBy {
-            client.takeLoan(TEN)
-        }.hasMessage(
-            "In order to take a loan client should have status identified. Current status is UNKNOWN"
-        )
+        assertThatThrownBy { client.takeLoan(TEN) }
+            .isInstanceOf(IllegalStateException::class.java)
+            .hasMessage(
+                "In order to take a loan client should have status identified. Current status is UNKNOWN"
+            )
     }
 
     @Order(6)
@@ -112,11 +112,11 @@ class ClientTest {
     @Order(7)
     @Test
     fun `client should be not able to take a loan when he has registered status`() {
-        assertThatThrownBy {
-            client.takeLoan(TEN)
-        }.hasMessage(
-            "In order to take a loan client should have status identified. Current status is REGISTERED"
-        )
+        assertThatThrownBy { client.takeLoan(TEN) }
+            .isInstanceOf(IllegalStateException::class.java)
+            .hasMessage(
+                "In order to take a loan client should have status identified. Current status is REGISTERED"
+            )
     }
 
     @Order(8)

@@ -131,11 +131,11 @@ class ClientNestedTest {
 
         @Test
         fun `client should be not able to take a loan when he has registered status`() {
-            assertThatThrownBy {
-                client.takeLoan(TEN)
-            }.hasMessage(
-                "In order to take a loan client should have status identified. Current status is REGISTERED"
-            )
+            assertThatThrownBy { client.takeLoan(TEN) }
+                .isInstanceOf(IllegalStateException::class.java)
+                .hasMessage(
+                    "In order to take a loan client should have status identified. Current status is REGISTERED"
+                )
         }
 
         @Nested
@@ -159,11 +159,11 @@ class ClientNestedTest {
 
             @Test
             fun `client should not have enough money to take a loan`() {
-                assertThatThrownBy {
-                    client.takeLoan(TEN)
-                }.hasMessage(
-                    "Client does not have enough money"
-                )
+                assertThatThrownBy { client.takeLoan(TEN) }
+                    .isInstanceOf(IllegalStateException::class.java)
+                    .hasMessage(
+                        "Client does not have enough money"
+                    )
             }
         }
     }
