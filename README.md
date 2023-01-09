@@ -1,3 +1,5 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/aplotnikov/spock_vs_kotest/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/aplotnikov/spock_vs_kotest/tree/main)
+
 #### Spock vs Kotest
 
 This repository is created for education reason.
