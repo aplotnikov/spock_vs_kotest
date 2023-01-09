@@ -18,22 +18,22 @@ class ClientContextKoSpec : ShouldSpec() {
 
     private val client = Client(clientFirstName, clientSecondName, listOf("test@gmail.com", "test2@gmail.com"))
 
-    override fun beforeSpec(spec: Spec) {
+    override suspend fun beforeSpec(spec: Spec) {
         println("Main class is prepared")
         super.beforeSpec(spec)
     }
 
-    override fun afterSpec(spec: Spec) {
+    override suspend fun afterSpec(spec: Spec) {
         super.afterSpec(spec)
         println("Main class is cleaned")
     }
 
-    override fun beforeTest(testCase: TestCase) {
+    override suspend fun beforeTest(testCase: TestCase) {
         println("Test into ${javaClass.simpleName} class is prepared")
         super.beforeTest(testCase)
     }
 
-    override fun afterTest(testCase: TestCase, result: TestResult) {
+    override suspend fun afterTest(testCase: TestCase, result: TestResult) {
         super.afterTest(testCase, result)
         println("Test into ${javaClass.simpleName} class is cleaned")
     }

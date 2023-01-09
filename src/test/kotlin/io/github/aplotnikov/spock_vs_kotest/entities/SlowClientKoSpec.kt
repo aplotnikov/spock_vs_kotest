@@ -24,13 +24,13 @@ class SlowClientKoSpec : ShouldSpec() {
     private val client = Client(clientFirstName, clientSecondName, listOf("test@gmail.com", "test2@gmail.com"))
 
     init {
-        should("client pay in max 2 seconds").config(timeout = seconds(2)) {
+        should("client pay in max 2 seconds").config(timeout = 2.seconds) {
             client.pay(TEN)
         }
 
         should("client pay identification fee in max 2 second with async conditions") {
             startPaymentOfIdentificationFee()
-            eventually(seconds(2)) {
+            eventually(2.seconds) {
                 client.isIdentified.shouldBeTrue()
             }
         }
