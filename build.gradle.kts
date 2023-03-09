@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.8.10"
     groovy
     codenarc
     id("io.gitlab.arturbosch.detekt") version "1.18.0"
@@ -14,19 +14,19 @@ repositories {
     mavenCentral()
 }
 
-val kotestVersion = "5.5.4"
+val kotestVersion = "5.5.5"
 
 dependencies {
     implementation("io.vavr:vavr:0.10.4")
 
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
+    testImplementation(platform("org.junit:junit-bom:5.9.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    testImplementation("org.assertj:assertj-core:3.24.1")
+    testImplementation("org.assertj:assertj-core:3.24.2")
 
     testImplementation("io.kotest:kotest-framework-api:$kotestVersion")
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
-    testImplementation("io.mockk:mockk:1.13.3")
+    testImplementation("io.mockk:mockk:1.13.4")
     testImplementation("org.apache.commons:commons-lang3:3.12.0")
     testImplementation("org.awaitility:awaitility:4.2.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
@@ -46,6 +46,6 @@ tasks.withType<Test> {
 }
 
 tasks.withType<CodeNarc> {
-    version = "3.1.0"
+    version = "3.2.0"
     configFile = rootProject.file("config/codenarc/codenarc.groovy")
 }
