@@ -39,7 +39,7 @@ public class LoanService {
     private Validation<String, BigDecimal> validateAmount(BigDecimal amount) {
         return Option.of(amount)
             .filter(isGreaterThanZero())
-            .toValidation("Application amount is less than zero. Provided amount is " + amount);
+            .toValidation("Application amount is less or equal than zero. Provided amount is " + amount);
     }
 
     private Predicate<BigDecimal> isGreaterThanZero() {

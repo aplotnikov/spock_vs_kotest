@@ -37,7 +37,7 @@ class LoanServiceKoSpec : ShouldSpec() {
                     row(
                         0.0,
                         days(30),
-                        "Application amount is less than zero. Provided amount is 0.0"
+                        "Application amount is less or equal than zero. Provided amount is 0.0"
                     ),
                     row(
                         10.0,

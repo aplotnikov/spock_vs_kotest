@@ -33,7 +33,7 @@ class LoanServiceSpec extends Specification {
             0 * _
         where:
             amount | term     || violation
-            0.0    | days(30) || 'Application amount is less than zero. Provided amount is 0.0'
+            0.0    | days(30) || 'Application amount is less or equal than zero. Provided amount is 0.0'
             10.0   | years(1) || 'Application term is bigger than 3 months. Provided term is 365 days'
     }
 
