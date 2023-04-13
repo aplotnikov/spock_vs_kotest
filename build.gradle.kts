@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.8.10"
+    kotlin("jvm") version "1.8.20"
     groovy
     codenarc
     id("io.gitlab.arturbosch.detekt") version "1.18.0"
@@ -26,7 +26,7 @@ dependencies {
     testImplementation("io.kotest:kotest-framework-api:$kotestVersion")
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
-    testImplementation("io.mockk:mockk:1.13.4")
+    testImplementation("io.mockk:mockk:1.13.5")
     testImplementation("org.apache.commons:commons-lang3:3.12.0")
     testImplementation("org.awaitility:awaitility:4.2.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
