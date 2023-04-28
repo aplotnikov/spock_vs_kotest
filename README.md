@@ -4,7 +4,7 @@
 
 This repository is created for education reason.
 
-The technology stack: Java 17, Groovy, Gradle, JUnit 5.9.2, Spock 2.3, Kotlin 1.8.10, 
+The technology stack: Java 17, Groovy, Gradle, JUnit 5.9.3, Spock 2.3, Kotlin 1.8.10, 
 kotest 5.5.5, mockito-kotlin, mockk
 Static code analyzers (codenarc, detekt, ktlint)
 
