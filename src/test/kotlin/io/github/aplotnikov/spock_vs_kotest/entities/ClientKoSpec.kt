@@ -4,6 +4,7 @@ import io.kotest.assertions.asClue
 import io.kotest.assertions.assertSoftly
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.core.test.TestCase
@@ -79,7 +80,7 @@ class ClientKoSpec : ShouldSpec() {
                 client.takeLoan(TEN)
             }
             // then
-            exception.shouldHaveMessage("In order to take a loan client should have status identified. Current status is UNKNOWN")
+            exception shouldHaveMessage "In order to take a loan client should have status identified. Current status is UNKNOWN"
         }
 
         should("client has status registered when registration is completed") {
@@ -95,7 +96,13 @@ class ClientKoSpec : ShouldSpec() {
                 client.takeLoan(TEN)
             }
             // then
-            exception.shouldHaveMessage("In order to take a loan client should have status identified. Current status is REGISTERED")
+            exception shouldHaveMessage "In order to take a loan client should have status identified. Current status is REGISTERED"
+        }
+
+        should("client be not able to take a loan when he has registered status 2") {
+            shouldThrowWithMessage<IllegalStateException>("In order to take a loan client should have status identified. Current status is REGISTERED") {
+                client.takeLoan(TEN)
+            }
         }
 
         should("client has status identified when identification is completed") {
@@ -111,7 +118,7 @@ class ClientKoSpec : ShouldSpec() {
                 client.takeLoan(TEN)
             }
             // then
-            exception.shouldHaveMessage("Client does not have enough money")
+            exception shouldHaveMessage "Client does not have enough money"
         }
 
         should("client has enough money to take a loan") {
