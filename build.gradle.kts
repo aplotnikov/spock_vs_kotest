@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.8.20"
+    kotlin("jvm") version "1.8.21"
     groovy
     codenarc
     id("io.gitlab.arturbosch.detekt") version "1.18.0"
@@ -14,7 +14,7 @@ repositories {
     mavenCentral()
 }
 
-val kotestVersion = "5.5.5"
+val kotestVersion = "5.6.1"
 
 dependencies {
     implementation("io.vavr:vavr:0.10.4")
