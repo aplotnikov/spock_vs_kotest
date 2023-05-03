@@ -11,6 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.mockito.kotlin.any
+import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
@@ -19,7 +20,7 @@ import java.util.stream.Stream
 class LoanServiceTest {
 
     private val repository = mock<LoanRepository> {
-        whenever(it.count()).thenReturn(1)
+        on { count() } doReturn 1
     }
 
     private val service = LoanService(repository)
