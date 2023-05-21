@@ -5,6 +5,7 @@ import static io.github.aplotnikov.spock.vs.kotest.entities.Status.REGISTERED;
 import static io.github.aplotnikov.spock.vs.kotest.entities.Status.UNKNOWN;
 import static java.math.BigDecimal.TEN;
 import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.apache.commons.lang3.Validate.validState;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -61,16 +62,14 @@ public class Client {
     }
 
     public void takeLoan(BigDecimal amount) {
-        if (!isIdentified()) {
-            throw new IllegalStateException(
-                "In order to take a loan client should have status identified. Current status is %s".formatted(status)
-            );
-        }
-
-        if (amount.compareTo(TEN) >= 0) {
-            throw new IllegalStateException("Client does not have enough money");
-        }
-
+        validState(
+            isIdentified(),
+            "In order to take a loan client should have status identified. Current status is %s".formatted(status)
+        );
+        validState(
+            amount.compareTo(TEN) < 0,
+            "Client does not have enough money"
+        );
         System.out.println("Client took loan with principal " + amount);
     }
 
