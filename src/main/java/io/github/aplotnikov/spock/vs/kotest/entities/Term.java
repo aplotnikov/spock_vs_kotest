@@ -1,5 +1,9 @@
 package io.github.aplotnikov.spock.vs.kotest.entities;
 
+import static io.github.aplotnikov.spock.vs.kotest.entities.DateUnit.DAY;
+import static io.github.aplotnikov.spock.vs.kotest.entities.DateUnit.MONTH;
+import static io.github.aplotnikov.spock.vs.kotest.entities.DateUnit.YEAR;
+
 public class Term {
 
     private final int days;
@@ -9,15 +13,15 @@ public class Term {
     }
 
     public static Term days(int days) {
-        return term(days, DateUnit.DAY);
+        return term(days, DAY);
     }
 
     public static Term months(int months) {
-        return term(months, DateUnit.MONTH);
+        return term(months, MONTH);
     }
 
     public static Term years(int years) {
-        return term(years, DateUnit.YEAR);
+        return term(years, YEAR);
     }
 
     public static Term term(int number, DateUnit unit) {

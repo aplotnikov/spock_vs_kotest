@@ -1,6 +1,8 @@
 package io.github.aplotnikov.spock.vs.kotest.entities;
 
-import static java.lang.String.format;
+import static io.github.aplotnikov.spock.vs.kotest.entities.Status.IDENTIFIED;
+import static io.github.aplotnikov.spock.vs.kotest.entities.Status.REGISTERED;
+import static io.github.aplotnikov.spock.vs.kotest.entities.Status.UNKNOWN;
 import static java.math.BigDecimal.TEN;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -18,7 +20,7 @@ public class Client {
 
     private final List<String> emails;
 
-    private Status status = Status.UNKNOWN;
+    private Status status = UNKNOWN;
 
     public Client(String firstName, String secondName, List<String> emails) {
         this.firstName = firstName;
@@ -39,29 +41,29 @@ public class Client {
     }
 
     public boolean isUnknown() {
-        return status == Status.UNKNOWN;
+        return status == UNKNOWN;
     }
 
     public boolean isRegistered() {
-        return status == Status.REGISTERED;
+        return status == REGISTERED;
     }
 
     public void register() {
-        status = Status.REGISTERED;
+        status = REGISTERED;
     }
 
     public boolean isIdentified() {
-        return status == Status.IDENTIFIED;
+        return status == IDENTIFIED;
     }
 
     public void identify() {
-        status = Status.IDENTIFIED;
+        status = IDENTIFIED;
     }
 
     public void takeLoan(BigDecimal amount) {
         if (!isIdentified()) {
             throw new IllegalStateException(
-                    format("In order to take a loan client should have status identified. Current status is %s", status)
+                "In order to take a loan client should have status identified. Current status is %s".formatted(status)
             );
         }
 
@@ -94,8 +96,8 @@ public class Client {
 
         Client client = (Client) o;
         return Objects.equals(firstName, client.firstName)
-                && Objects.equals(secondName, client.secondName)
-                && Objects.equals(emails, client.emails);
+            && Objects.equals(secondName, client.secondName)
+            && Objects.equals(emails, client.emails);
     }
 
     @Override
