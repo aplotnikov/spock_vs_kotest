@@ -29,7 +29,7 @@ class LoanServiceTest {
         @JvmStatic
         fun validationArguments(): Stream<Arguments> = Stream.of(
             Arguments.of(0.0, days(30), "Application amount is less or equal than zero. Provided amount is 0.0"),
-            Arguments.of(10.0, years(1), "Application term is bigger than 3 months. Provided term is 365 days"),
+            Arguments.of(10.0, years(1), "Application term is bigger than 3 months. Provided term is 365 days")
         )
     }
 

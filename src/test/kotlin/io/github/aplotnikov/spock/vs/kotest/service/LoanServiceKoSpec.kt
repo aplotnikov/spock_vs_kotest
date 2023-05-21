@@ -43,7 +43,7 @@ class LoanServiceKoSpec : ShouldSpec() {
                         10.0,
                         years(1),
                         "Application term is bigger than 3 months. Provided term is 365 days"
-                    ),
+                    )
                 )
             ) { amount: Double, term: Term, violation: String ->
                 // given
@@ -60,7 +60,7 @@ class LoanServiceKoSpec : ShouldSpec() {
 
         listOf(
             row(0.0, days(30), "Application amount is less or equal than zero. Provided amount is 0.0"),
-            row(10.0, years(1), "Application term is bigger than 3 months. Provided term is 365 days"),
+            row(10.0, years(1), "Application term is bigger than 3 months. Provided term is 365 days")
         ).forEach { (amount, term, violation) ->
             should("not pass validation for amount $amount and term $term") {
                 // given

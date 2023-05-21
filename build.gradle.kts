@@ -3,7 +3,7 @@ plugins {
     groovy
     codenarc
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
-    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
+    id("org.jlleitschuh.gradle.ktlint") version "11.3.2"
 }
 
 group = "io.github.aplotnikov"
