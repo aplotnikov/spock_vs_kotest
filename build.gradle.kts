@@ -14,7 +14,7 @@ repositories {
     mavenCentral()
 }
 
-val kotestVersion = "5.6.1"
+val kotestVersion = "5.6.2"
 
 dependencies {
     implementation("io.vavr:vavr:0.10.4")
