@@ -24,13 +24,13 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation("org.awaitility:awaitility:4.2.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
 
     testImplementation(platform("io.kotest:kotest-bom:5.6.2"))
     testImplementation("io.kotest:kotest-framework-api")
     testImplementation("io.kotest:kotest-runner-junit5")
     testImplementation("io.kotest:kotest-assertions-core")
     testImplementation("io.mockk:mockk:1.13.5")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
 
     testImplementation("org.spockframework:spock-core:2.3-groovy-3.0")
 }
