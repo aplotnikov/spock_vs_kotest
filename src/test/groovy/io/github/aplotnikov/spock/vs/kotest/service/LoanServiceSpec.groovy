@@ -3,6 +3,8 @@ package io.github.aplotnikov.spock.vs.kotest.service
 import static io.github.aplotnikov.spock.vs.kotest.entities.Term.days
 import static io.github.aplotnikov.spock.vs.kotest.entities.Term.years
 
+import io.github.aplotnikov.spock.vs.kotest.entities.Application
+import io.github.aplotnikov.spock.vs.kotest.entities.Loan
 import io.github.aplotnikov.spock.vs.kotest.repository.LoanRepository
 import io.vavr.control.Validation
 import spock.lang.Specification
@@ -19,9 +21,9 @@ class LoanServiceSpec extends Specification {
 
     void 'application should not pass validation when amount is #amount and term is #term'() {
         given:
-            io.github.aplotnikov.spock.vs.kotest.entities.Application application = new io.github.aplotnikov.spock.vs.kotest.entities.Application(amount, term)
+            Application application = new Application(amount, term)
         when:
-            Validation<String, io.github.aplotnikov.spock.vs.kotest.entities.Loan> result = service.create(application)
+            Validation<String, Loan> result = service.create(application)
         then:
             with(result) {
                 invalid
@@ -37,19 +39,19 @@ class LoanServiceSpec extends Specification {
 
     void 'application should pass validation and loan is created'() {
         given:
-            io.github.aplotnikov.spock.vs.kotest.entities.Application application = new io.github.aplotnikov.spock.vs.kotest.entities.Application(10.0, days(30))
+            Application application = new Application(10.0, days(30))
         when:
-            Validation<String, io.github.aplotnikov.spock.vs.kotest.entities.Loan> result = service.create(application)
+            Validation<String, Loan> result = service.create(application)
         then:
             result.valid
         and:
             with(result.get()) {
-                amount == application.amount
-                term == application.term
+                amount() == application.amount()
+                term() == application.term()
             }
         and:
             with(repository) {
-                1 * save(_ as io.github.aplotnikov.spock.vs.kotest.entities.Loan) >> { io.github.aplotnikov.spock.vs.kotest.entities.Loan loan -> loan }
+                1 * save(_ as Loan) >> { Loan loan -> loan }
             }
         and:
             0 * _
