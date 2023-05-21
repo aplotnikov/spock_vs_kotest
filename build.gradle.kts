@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm") version "1.8.21"
     groovy
     codenarc
-    id("io.gitlab.arturbosch.detekt") version "1.18.0"
+    id("io.gitlab.arturbosch.detekt") version "1.22.0"
     id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
 }
 
@@ -17,6 +17,8 @@ repositories {
 val kotestVersion = "5.6.2"
 
 dependencies {
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${detekt.toolVersion}")
+
     implementation("io.vavr:vavr:0.10.4")
 
     testImplementation("org.apache.commons:commons-lang3:3.12.0")
