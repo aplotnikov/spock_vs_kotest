@@ -59,8 +59,8 @@ class LoanServiceTest {
         assertThat(result.isValid).isTrue
         // and
         result.get().run {
-            assertThat(amount).isEqualByComparingTo(application.amount)
-            assertThat(term).isEqualTo(application.term)
+            assertThat(amount()).isEqualByComparingTo(application.amount())
+            assertThat(term()).isEqualTo(application.term())
         }
         // and
         verify(repository).save(any())

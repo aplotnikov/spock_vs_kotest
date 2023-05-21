@@ -86,8 +86,8 @@ class LoanServiceKoSpec : ShouldSpec() {
             result.isValid.shouldBeTrue()
             // and
             result.get().asClue {
-                it.amount shouldBeEqualComparingTo application.amount
-                it.term shouldBe application.term
+                it.amount() shouldBeEqualComparingTo application.amount()
+                it.term() shouldBe application.term()
             }
             // and
             verify {
