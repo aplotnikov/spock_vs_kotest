@@ -14,8 +14,6 @@ repositories {
     mavenCentral()
 }
 
-val kotestVersion = "5.6.2"
-
 dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${detekt.toolVersion}")
 
@@ -27,9 +25,10 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.24.2")
     testImplementation("org.awaitility:awaitility:4.2.0")
 
-    testImplementation("io.kotest:kotest-framework-api:$kotestVersion")
-    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
-    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+    testImplementation(platform("io.kotest:kotest-bom:5.6.2"))
+    testImplementation("io.kotest:kotest-framework-api")
+    testImplementation("io.kotest:kotest-runner-junit5")
+    testImplementation("io.kotest:kotest-assertions-core")
     testImplementation("io.mockk:mockk:1.13.5")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
 
